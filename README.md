@@ -2,4 +2,6 @@
 
 
 ## Integrantes:
+- Laura Almiron
 - Nicolas Bordon
+
