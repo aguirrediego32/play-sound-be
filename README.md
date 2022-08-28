@@ -2,6 +2,6 @@
 
 
 ## Integrantes:
+- Diego Aguirre
 - Laura Almiron
 - Nicolas Bordon
-
