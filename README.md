@@ -2,4 +2,4 @@
 
 
 ## Integrantes:
--
+- Diego Aguirre
