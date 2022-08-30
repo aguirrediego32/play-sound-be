@@ -30,7 +30,7 @@ const register = async (req, res)=>{
     }
 }
 
-const login = (req, res) => {
+const login = async (req, res) => {
     const {email, password} = req.body;
     // Check email on DB
     User.findOne({where:{email:email}})
@@ -38,20 +38,25 @@ const login = (req, res) => {
         if(!user){
             // Invalid email
             res.status(404).json({msg:'Email invalido'});
-        } else if(bcrypt.compare(password, user.password)){
-            // Set token
-            let token = jwt.sign({id:user.id, email:user.email, role:user.role},process.env.ACCESS_TOKEN_SECRET, {expiresIn: '3d'});
-
-            const cookiesOptions = {
-                expire: new Date(Date.now + process.env.TOKEN_EXPIRES * 24 * 60 * 60 * 60 * 1000),
-                httpOnly: true
-            }
-            res.cookie('jwt', token, cookiesOptions);
-
-            return res.status(200).json({user, token});
         } else {
-            // Access denie - User or password is invalid
-            return res.status(401).json({msg: 'Usuario y/o contraseña incorrecta'});
+            bcrypt.compare(password, user.password,(err, data) => {
+                if(err) throw err;
+                if(data){
+                    // Set token
+                    let token = jwt.sign({id:user.id, email:user.email, role:user.role},process.env.ACCESS_TOKEN_SECRET, {expiresIn: '3d'});
+
+                    const cookiesOptions = {
+                        expire: new Date(Date.now + process.env.TOKEN_EXPIRES * 24 * 60 * 60 * 60 * 1000),
+                        httpOnly: true
+                    }
+                    res.cookie('jwt', token, cookiesOptions);
+
+                    return res.status(200).json({user, token});
+                }else{
+                    // Access denie - User or password is invalid
+                    return res.status(401).json({msg: 'Usuario y/o contraseña incorrecta'});
+                }
+            })   
         }
     })
     .catch(err=>{
