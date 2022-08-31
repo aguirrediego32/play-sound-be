@@ -26,7 +26,7 @@ module.exports = {
         unique: true
       },
       role: {
-        type: DataTypes.STRING(20),
+        type: Sequelize.STRING(20),
         allowNull: false
       },
       createdAt: {
