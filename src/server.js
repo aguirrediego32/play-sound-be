@@ -8,6 +8,7 @@ const app = express();
 //Require routes
 const router = require('./routes/user.routes');
 const albumRouter = require('./routes/album.routes');
+const artistRouter = require('./routes/artist.routes');
 
 //Settings
 app.use(cors());
@@ -18,6 +19,7 @@ app.use(json());
 //Routes
 app.use('/',router);
 app.use('/',albumRouter);
+app.use('/', artistRouter);
 
 app.use((req,res,next)=>{
     res.status(404).json({
