@@ -5,6 +5,12 @@ const path = require('path');
 const {json} = require('body-parser');
 const app = express();
 
+const swaggerConf = require('./config/swagger-conf');
+const swaggerJsdoc = require('swagger-jsdoc');
+const swaggerUI = require('swagger-ui-express');
+
+const swaggerDoc = swaggerJsdoc(swaggerConf);
+
 //Require routes
 const router = require('./routes/user.routes');
 const albumRouter = require('./routes/album.routes');
@@ -17,6 +23,7 @@ app.use(express.urlencoded({extended:false}));
 app.use(json());
 
 //Routes
+app.use('/api-doc',swaggerUI.serve, swaggerUI.setup(swaggerDoc));
 app.use('/',router);
 app.use('/',albumRouter);
 app.use('/', artistRouter);
