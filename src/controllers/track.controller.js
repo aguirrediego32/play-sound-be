@@ -55,19 +55,19 @@ const updateTrack = async (req,res) => {
         track.save().then(track =>{
             return res.status(200).json({track});
         })
-        } else {
+    } else {
             return res.status(404).json({'msg':'canción no encontrada'})
-        }
     }
+}
 
-    const readTrack = async (req,res) => {
-        let tracks = await Track.findAll();
-        if(tracks) {
-            return res.status(200).json({tracks});
-        } else {
-            return res.status({'msg': 'no se encontraron canciones'});
-        }
+const readTrack = async (req,res) => {
+    let tracks = await Track.findAll();
+    if(tracks) {
+        return res.status(200).json({tracks});
+    } else {
+        return res.status({'msg': 'no se encontraron canciones'});
     }
+}
 
 module.exports = {
     createTrack,
