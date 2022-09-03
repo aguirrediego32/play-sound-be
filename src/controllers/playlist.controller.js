@@ -71,8 +71,8 @@ const showPlaylist = async (req, res) => {
 }
 
 const showPlaylistTracks = async (req, res) => {
-    const id = req.params.id
-    let playlist = await Playlist.findByPk(id)
+    const id = req.params.id;
+    let playlist = await Playlist.findByPk(id);
     if (!playlist) {
         return res.status(404).json({msg: "Playlist not found"});
     }
