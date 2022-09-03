@@ -1,7 +1,4 @@
-require('dotenv').config();
 const {Artist} = require('../database/models/index');
-const sequelize = require('sequelize');
-const { json } = require('body-parser');
 
 //Funciones
 const createArtist = async (req,res) => {
