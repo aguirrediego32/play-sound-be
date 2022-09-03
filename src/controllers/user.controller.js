@@ -59,12 +59,37 @@ const logout = async (req, res) => {
     // Elimiran cookie jwt
     res.clearCookie('jwt');
     // redirigir al login
-    return res.redirect('/login');
+    return res.status(200).json({msg:'Sesion finalizada'});
+}
+
+const isAuthenticated = async (req, res, next) => {
+    // Comprobar si existe el token y esta autenticado
+    if(!req.cookies.jwt){
+        return res.status(401).json({msg:'Debe iniciar sesion para continuar'});
+    }
+
+    try{
+        // Leer token
+        const decoded = await jwt.verify(req.cookies.jwt, process.env.ACCESS_TOKEN_SECRET);
+        // Buscar usuario por email
+        const datos = await User.findOne({where:{email:decoded.email}})
+        if(datos){
+            User.findByPk(datos.dataValues.id).then(user => {
+                req.user = { id: user.id, name: user.name, email: user.email, role: user.role };
+                next();
+            })
+        } else {
+            return res.status(500).json({msg:'Error al decodificar el token'});
+        }
+    } catch(err) {
+        return res.status(500).json(err.message);
+    }
 }
 
 module.exports = {
     list,
     register,
     login,
-    logout
+    logout,
+    isAuthenticated
 };

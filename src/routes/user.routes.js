@@ -1,7 +1,7 @@
 const Router = require('express');
 const router = Router();
 
-const { list, register, login, logout } = require('../controllers/user.controller');
+const { list, register, login, logout, isAuthenticated } = require('../controllers/user.controller');
 
 /**
  * @openapi
@@ -35,7 +35,7 @@ const { list, register, login, logout } = require('../controllers/user.controlle
  *                        type: string
  *                        example: user
  */
- router.get('/users', list);
+ router.get('/users',  isAuthenticated, list);
 
  /**
  * @openapi
