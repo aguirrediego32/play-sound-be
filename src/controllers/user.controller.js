@@ -55,9 +55,16 @@ const login = async (req, res) => {
     })
 }
 
+const logout = async (req, res) => {
+    // Elimiran cookie jwt
+    res.clearCookie('jwt');
+    // redirigir al login
+    return res.redirect('/login');
+}
 
 module.exports = {
     list,
     register,
-    login
+    login,
+    logout
 };
