@@ -5,11 +5,8 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 const list = async (req,res)=>{
-    let users = await User.findAll();
-    return res.status(200).json({
-        status : '200',
-        users
-    })
+    let users = await User.findAll({ attributes:['name', 'email', 'role'] });
+    return res.status(200).json( { users } );
 }
 
 const register = async (req, res)=>{
@@ -17,16 +14,9 @@ const register = async (req, res)=>{
     params.password = await bcrypt.hash(req.body.password, 10);
     let user = await User.create(params);
     if (user){
-        return res.status(201).json({
-            'status': 201,
-            'msg': 'creado correctamente',
-            user
-        })
+        return res.status(201).json({ 'msg': 'creado correctamente', user });
     } else {
-        return res.status(404).json({
-            'status': 404,
-            'msg' : 'no se recibieron los datos',
-        })
+        return res.status(404).json({ 'msg' : 'no se recibieron los datos' });
     }
 }
 
@@ -54,7 +44,7 @@ const login = async (req, res) => {
                     return res.status(200).json({user, token});
                 }else{
                     // Access denie - User or password is invalid
-                    return res.status(401).json({msg: 'Usuario y/o contraseña incorrecta'});
+                    return res.status(401).json({ msg: 'Usuario y/o contraseña incorrecta' });
                 }
             })   
         }
