@@ -21,17 +21,27 @@ router.get('/albums', readAlbum);
 /**
  * @openapi
  * path:
- * /album/:id:
+ * /album/{id}:
  *  get:
  *    description: show album by id
  *    summary: show album by id
  *    tags:
  *      - album
  *    responses:
- *        200:
- *         description: return album
- *         
- */
+ *      200:
+ *        description: return album
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *              album:
+ *                type: object
+ *                properties:
+ *                  album:
+ *                    type: object
+ *                    properties: 
+ */         
 router.get('/album/:id', showAlbum);
 
 /**
