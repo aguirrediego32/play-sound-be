@@ -1,6 +1,4 @@
-require('dotenv').config();
 const {Album} = require('../database/models/index');
-const sequelize = require('sequelize');
 
 //Funciones
 const createAlbum = async (req,res) => {
@@ -9,7 +7,7 @@ const createAlbum = async (req,res) => {
     if(album){
         return res.status(200).json({ album, 'msg': 'creado correctamente'})
     } else {
-        return res.status(404).json({ 'msg': 'no se recibieron datos'})
+        return res.status(400).json({ 'msg': 'no se recibieron datos'})
     }
 };
 
