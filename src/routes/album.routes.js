@@ -46,14 +46,7 @@ const {createAlbum,readAlbum,updateAlbum,deleteAlbum, showAlbum} = require('../c
  *                properties:
  *                  msg:
  *                    type: string
- *                    example: albumnes no encontrados
- *    parameters:
- *      - in: path
- *        name: id
- *        required: true
- *        schema:
- *          type: int
- *        description: album id  
+ *                    example: albumnes no encontrados 
  */
 router.get('/albums', readAlbum);
 
