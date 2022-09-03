@@ -14,7 +14,46 @@ const {createAlbum,readAlbum,updateAlbum,deleteAlbum, showAlbum} = require('../c
  *      - album
  *    responses:
  *        200:
- *         description: return albums
+ *          description: return album
+ *          content:
+ *            application/json:
+ *              schema:
+ *                type: object
+ *                properties:
+ *                  album:
+ *                    type: array
+ *                    items:
+ *                      type: object
+ *                      properties:
+ *                        id:
+ *                          type: integer
+ *                          example: 1
+ *                        description:
+ *                          type: string
+ *                          example: porco rex
+ *                        createdAt:
+ *                          type: string
+ *                          example: 2022-09-03T13:11:44.000Z
+ *                        updateAt:
+ *                          type: string
+ *                          example: 2022-09-03T13:11:44.000Z
+ *        404:
+ *          description: albums not found
+ *          content:
+ *            application/json:
+ *              schema:
+ *                type: object
+ *                properties:
+ *                  msg:
+ *                    type: string
+ *                    example: albumnes no encontrados
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        required: true
+ *        schema:
+ *          type: int
+ *        description: album id  
  */
 router.get('/albums', readAlbum);
 
@@ -35,12 +74,38 @@ router.get('/albums', readAlbum);
  *            schema:
  *              type: object
  *              properties:
- *              album:
- *                type: object
- *                properties:
  *                  album:
  *                    type: object
- *                    properties: 
+ *                    properties:
+ *                      id:
+ *                        type: int
+ *                        example: 1
+ *                      description:
+ *                        type: string
+ *                        example: porco rex
+ *                      updateAt:
+ *                        type: data-time
+ *                        example: 2022-09-02T23:45:46.751Z
+ *                      createdAt:
+ *                        type: data-time
+ *                        example: 2022-09-02T23:45:46.751Z 
+ *      404:
+ *        description: album not found
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                msg:
+ *                  type: string
+ *                  example: album no encontrado
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        required: true
+ *        schema:
+ *          type: int
+ *        description: album id
  */         
 router.get('/album/:id', showAlbum);
 
