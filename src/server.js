@@ -15,6 +15,7 @@ const swaggerDoc = swaggerJsdoc(swaggerConf);
 
 //Require routes
 const router = require('./routes/user.routes');
+const routerPlaylist = require('./routes/playlist.routes');
 const albumRouter = require('./routes/album.routes');
 const artistRouter = require('./routes/artist.routes');
 const trackRouter = require('./routes/track.routes');
@@ -28,6 +29,8 @@ app.use(cookieParser());
 
 //Routes
 app.use('/api-doc',swaggerUI.serve, swaggerUI.setup(swaggerDoc));
+app.use('/',router);
+app.use('/', routerPlaylist);
 app.use('/', router);
 app.use('/', albumRouter);
 app.use('/', artistRouter);
