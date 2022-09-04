@@ -16,8 +16,7 @@ const createPlaylist = async (req, res) => {
         }
     } else {
         return res.status(404).json({msg:'User does not exist'});
-    }
-    
+    } 
 };
 
 const deletePlaylist = async (req, res) => {
