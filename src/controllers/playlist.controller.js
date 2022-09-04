@@ -1,8 +1,5 @@
 const { Playlist, User, Track, PlaylistsTracks } = require('../database/models/index');
 const sequelize = require('sequelize');
-const { param } = require('../routes/playlist.routes');
-const { restart } = require('nodemon');
-const { json } = require('body-parser');
 
 const createPlaylist = async (req, res) => {
     const params = req.body;
