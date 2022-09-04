@@ -3,6 +3,9 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
+      User.hasMany(models.Playlist, {
+        foreignKey: 'userId'
+      })
     }
   }
   User.init({
@@ -10,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(50),
       allowNull: true,
       validate: {
-        isAlpha: { msg:"El nombre solo debe contener letras" },
+        //isAlpha: { msg:"El nombre solo debe contener letras" },
         len: {
           args: [3,50],
           msg: "El nombre debe contener entre 3 a 50 letras"
