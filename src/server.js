@@ -3,11 +3,13 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const {json} = require('body-parser');
-const app = express();
+const cookieParser = require('cookie-parser');
 
 const swaggerConf = require('./config/swagger-conf');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUI = require('swagger-ui-express');
+
+const app = express();
 
 const swaggerDoc = swaggerJsdoc(swaggerConf);
 
@@ -23,12 +25,12 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(json());
+app.use(cookieParser());
 
 //Routes
 app.use('/api-doc',swaggerUI.serve, swaggerUI.setup(swaggerDoc));
 app.use('/',router);
 app.use('/', routerPlaylist);
-app.use('/', router);
 app.use('/', albumRouter);
 app.use('/', artistRouter);
 app.use('/', trackRouter);
