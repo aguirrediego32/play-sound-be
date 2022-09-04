@@ -15,7 +15,7 @@ const createTrack = async (req,res) =>{
     if(track){
         return res.status(200).json({track,'msg':'canción creada correctamente'});
     } else {
-        return res.status(400).json({'msg': 'no se recibieron datos'})
+        return res.status(400).json({'msg': 'no se recibieron datos'});
     }    
 }
 
@@ -34,10 +34,10 @@ const deleteTrack = async (req,res) => {
     let track = await Track.findByPk(id);
     if(track){
         track.destroy().then(() =>{
-            return res.status(200).json({'msg':'canción eliminada correctamente'})      
+            return res.status(200).json({'msg':'canción eliminada correctamente'});      
         })  
     } else {
-        return res.status(404).json({'msg': 'canción no encontrada'})
+        return res.status(404).json({'msg': 'canción no encontrada'});
     }
 }
 
@@ -55,19 +55,19 @@ const updateTrack = async (req,res) => {
         track.save().then(track =>{
             return res.status(200).json({track});
         })
-        } else {
-            return res.status(404).json({'msg':'canción no encontrada'})
-        }
+    } else {
+            return res.status(404).json({'msg':'canción no encontrada'});
     }
+}
 
-    const readTrack = async (req,res) => {
-        let tracks = await Track.findAll();
-        if(tracks) {
-            return res.status(200).json({tracks});
-        } else {
-            return res.status({'msg': 'no se encontraron canciones'});
-        }
+const readTrack = async (req,res) => {
+    let tracks = await Track.findAll();
+    if(tracks) {
+        return res.status(200).json({tracks});
+    } else {
+        return res.status({'msg': 'no se encontraron canciones'});
     }
+}
 
 module.exports = {
     createTrack,
