@@ -31,7 +31,6 @@ app.use(cookieParser());
 app.use('/api-doc',swaggerUI.serve, swaggerUI.setup(swaggerDoc));
 app.use('/',router);
 app.use('/', routerPlaylist);
-app.use('/', router);
 app.use('/', albumRouter);
 app.use('/', artistRouter);
 app.use('/', trackRouter);
