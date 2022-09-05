@@ -1,34 +1,40 @@
 version: '3.9'
 
 services:
-  mysql:
-    image: mysql
+  mysqldb:
+    image: mysql:5.7
+    env_file:
+      - ./.env
     container_name: playsound-db
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=play-sound-db
-      - MYSQL_USER=playsound
-      - MYSQL_PASS=playsound
+      MYSQL_ROOT_PASSWORD: $DB_PASS
+      MYSQL_DATABASE: $DB_NAME
     ports:
-      - '3306:3306'
+      - "3306:3306"
     volumes:
-      - playsound-db:/var/lib/mysql
+      - "playsound-vol:/var/lib/mysql"
 
   playsound:
+    depends_on:
+      - mysqldb
+    links:
+      - mysqldb
     build:
       context: .
     container_name: playsound-dev
+    restart: always
+    env_file:
+      - ./.env
     environment:
-      - DB_TYPE=mysql
-      - DB_HOST=127.0.0.1
-      - DB_PORT=3306
-      - DB_NAME=play-sound-db
-      - DB_USER=playsound
-      - DB_PASS=playsound
+      DB_HOST: mysqldb
+      DB_PORT: $DB_PORT
+      DB_TYPE: $DB_TYPE
+      DB_NAME: $DB_NAME
+      DB_USER: $DB_USER
+      DB_PASS: $DB_PASS
     ports:
-      - '3000:3000'
-    depends_on:
-      - mysql
-  
+      - "3000:3000"
 volumes:
-  playsound-db:
+  playsound-vol:
