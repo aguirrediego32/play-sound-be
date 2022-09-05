@@ -2,6 +2,8 @@ const Router = require('express');
 const router = Router();
 
 const { list, register, login, logout, isAuthenticated } = require('../controllers/user.controller');
+const { EmailIsUnique } = require('../middlewares/EmailIsUnique');
+const { validateLogin } = require('../validators/auth');
 
 /**
  * @openapi
@@ -96,7 +98,7 @@ const { list, register, login, logout, isAuthenticated } = require('../controlle
  *                  type: string
  *                  example: no se recibieron los datos
  */
-router.post('/user', register);
+router.post('/user', validateLogin, EmailIsUnique, register);
 
 /**
  * @openapi
