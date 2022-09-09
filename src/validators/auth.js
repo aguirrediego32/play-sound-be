@@ -10,7 +10,7 @@ const validateLogin = [
         .withMessage('No contiene un formato de email valido'),
     check('password')
         .exists()
-        .length( { min:6 } )
+        .isLength( { min:6 } )
         .withMessage('La contraseña debe contener mas de 6 caracteres'),
     (req,res,next) => {
         validateResult(res,res,next);
