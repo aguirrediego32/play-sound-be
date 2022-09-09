@@ -32,7 +32,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        name: 'BEBE (Offucuak Video)',
+        name: 'Gioli & Assia',
         nickname: 'Gioli & Assia',
         nationality: 'IT',
         createdAt: new Date(),
