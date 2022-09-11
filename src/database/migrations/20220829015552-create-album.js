@@ -11,6 +11,16 @@ module.exports = {
       description: {
         type: Sequelize.STRING
       },
+      artistId: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'Artists',
+          key: 'id'
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
