@@ -15,16 +15,15 @@ module.exports = (sequelize, DataTypes) => {
       Track.belongsTo(models.Artist);
       Track.belongsToMany(models.Playlist, {
         through: 'PlaylistsTracks',
-        foreignKey: 'trackId'
+        foreignKey: {
+          name: 'trackId'
+        }
       })
 
     }
   }
   Track.init({
     name: DataTypes.STRING,
-    albumId: DataTypes.INTEGER,
-    cover: DataTypes.STRING,
-    artistId: DataTypes.INTEGER,
     duration: DataTypes.INTEGER,
     url: DataTypes.STRING
   }, {
