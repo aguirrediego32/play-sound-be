@@ -1,7 +1,8 @@
 const Router = require('express');
 const router = Router();
 
-const { list, register, login, logout, isAuthenticated } = require('../controllers/user.controller');
+const { list, register, login, logout/*, isAuthenticated*/ } = require('../controllers/user.controller');
+const { isAuthenticated } = require('../middlewares/UserAuthenticated')
 const { EmailIsUnique } = require('../middlewares/EmailIsUnique');
 const { validateLogin } = require('../validators/auth');
 

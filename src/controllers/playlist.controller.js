@@ -2,10 +2,14 @@ const { Playlist, User, Track, PlaylistsTracks } = require('../database/models/i
 const sequelize = require('sequelize');
 
 const createPlaylist = async (req, res) => {
-    const params = req.body;
-    const user = await User.findByPk(params.userId);
+    const { name } = req.body;
+    const user = await User.findByPk(req.user.id);
     if(user) {
-        const playlist = await Playlist.create(params);
+        let inPlayList = {
+            userId:req.user.id,
+            name
+        }
+        const playlist = await Playlist.create(inPlayList);
         if (playlist) {
             return res.status(201).json({msg:'Playlist created correctly'});
         } else {
