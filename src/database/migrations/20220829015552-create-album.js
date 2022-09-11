@@ -8,8 +8,24 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      name:{
+        type: Sequelize.STRING
+      },
+      cover: {
+        type: Sequelize.STRING
+      },
       description: {
         type: Sequelize.STRING
+      },
+      artistId: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'Artists',
+          key: 'id'
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
       },
       createdAt: {
         allowNull: false,
