@@ -1,4 +1,5 @@
-const{ Track, Album, Artist } = require('../database/models/index');
+const { Track, Album, Artist } = require('../database/models/index');
+const { Op } = require('sequelize');
 
 //Funciones
 const createTrack = async (req,res) =>{
@@ -61,11 +62,27 @@ const updateTrack = async (req,res) => {
 }
 
 const readTrack = async (req,res) => {
-    let tracks = await Track.findAll();
+    let src = req.query.src
+    if(!src){src = ''}else{src = src.toLowerCase()}
+    console.log(src);
+    let tracks = await Track.findAll({
+        include:[
+        {
+            model: Album,
+        },
+        {
+            model: Artist,
+            attributes:['name', 'nickname', 'nationality'],
+        }]
+    });
     if(tracks) {
+        tracks = tracks.filter( t => 
+            t.name.toLowerCase().includes(src) ||
+            t.Album.description.toLowerCase().includes(src) ||
+            t.Artist.name.toLowerCase().includes(src));
         return res.status(200).json({tracks});
     } else {
-        return res.status({'msg': 'no se encontraron canciones'});
+        return res.status(409).json({'msg': 'no se encontraron canciones'});
     }
 }
 
