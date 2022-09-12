@@ -3,15 +3,19 @@ const sequelize = require('sequelize');
 
 const createPlaylist = async (req, res) => {
     const { name } = req.body;
-    const user = await User.findByPk(req.user.id);
+    const reqUser = req.user;
+    const user = await User.findByPk(reqUser.id);
+    console.log('user ---> ', reqUser);
     if(user) {
         let inPlayList = {
-            userId:req.user.id,
-            name
+            id:0,
+            userId: reqUser.id,
+            name,
+            description:''
         }
         const playlist = await Playlist.create(inPlayList);
         if (playlist) {
-            return res.status(201).json({msg:'Playlist created correctly'});
+            return res.status(201).json({msg:'Playlist created correctly',playlist});
         } else {
             return res.status(400).json({msg:'Data has not been received'});
         }

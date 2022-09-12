@@ -13,7 +13,7 @@ const isAuthenticated = async (req, res, next) => {
 
     try{
         // Leer token
-        const decoded = await jwt.verify(req.cookies.jwt, process.env.ACCESS_TOKEN_SECRET);
+        const decoded = await jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
         // Buscar usuario por email
         const datos = await User.findOne({where:{email:decoded.email}})
         if(datos){
