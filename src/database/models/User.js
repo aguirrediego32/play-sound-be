@@ -3,8 +3,8 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
-      User.hasMany(models.Playlist)
-      User.hasOne(models.Artist)
+      User.hasMany(models.Playlist,{foreignKey:{name:'userId'}});
+      User.hasOne(models.Artist,{foreignKey:{name:'userId'}});
     }
   }
   User.init({

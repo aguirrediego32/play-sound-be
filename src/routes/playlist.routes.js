@@ -2,6 +2,7 @@ const Router = require('express');
 const router = Router();
 
 const {createPlaylist, deletePlaylist, updatePlaylist, readPlaylist, showPlaylist, showPlaylistTracks, addTrackToPlaylist} = require('../controllers/playlist.controller');
+const {isAuthenticated} = require('../middlewares/UserAuthenticated')
 
 /**
  * @openapi
@@ -253,7 +254,7 @@ router.get('/playlist/:id', showPlaylist);
  *                  type: string
  *                  example: User does not exist
  */
-router.post('/playlist', createPlaylist);
+router.post('/playlist', isAuthenticated, createPlaylist);
 
 /**
  * @openapi
