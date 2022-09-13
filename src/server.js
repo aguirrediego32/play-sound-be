@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const {json} = require('body-parser');
+const {json,urlencoded} = require('body-parser');
 const cookieParser = require('cookie-parser');
 
 const swaggerConf = require('./config/swagger-conf');
@@ -22,9 +22,9 @@ const trackRouter = require('./routes/track.routes');
 
 //Settings
 app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({extended:false}));
+//app.use(express.json());
 app.use(json());
+app.use(urlencoded({extended:true}));
 app.use(cookieParser());
 
 //Routes
