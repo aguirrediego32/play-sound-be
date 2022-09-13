@@ -9,7 +9,7 @@ module.exports = {
         albumId: 1,
         artistId: 1,
         duration: 333,
-        url: 'http://localhost:3000/track-1.mp3',
+        url: 'https://playsoundst.blob.core.windows.net/mocktracks/track-1.mp3',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -18,7 +18,7 @@ module.exports = {
         albumId: 2,
         artistId: 2,
         duration: 333,
-        url: 'http://localhost:3000/track-2.mp3',
+        url: 'https://playsoundst.blob.core.windows.net/mocktracks/track-2.mp3',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -27,7 +27,7 @@ module.exports = {
         albumId: 3,
         artistId: 3,
         duration: 333,
-        url: 'http://localhost:3000/track-3.mp3',
+        url: 'https://playsoundst.blob.core.windows.net/mocktracks/track-3.mp3',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -36,7 +36,7 @@ module.exports = {
         albumId: 4,
         artistId: 4,
         duration: 333,
-        url: 'http://localhost:3000/track-4.mp3',
+        url: 'https://playsoundst.blob.core.windows.net/mocktracks/track-4.mp3',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -45,7 +45,7 @@ module.exports = {
         albumId: 5,
         artistId: 5,
         duration: 333,
-        url: 'http://localhost:3000/track-5.mp3',
+        url: 'https://playsoundst.blob.core.windows.net/mocktracks/track-5.mp3',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -54,7 +54,7 @@ module.exports = {
         albumId: 6,
         artistId: 6,
         duration: 333,
-        url: 'http://localhost:3000/track-6.mp3',
+        url: 'https://playsoundst.blob.core.windows.net/mocktracks/track-6.mp3',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -63,7 +63,7 @@ module.exports = {
         albumId: 7,
         artistId: 7,
         duration: 333,
-        url: 'http://localhost:3000/track-7.mp3',
+        url: 'https://playsoundst.blob.core.windows.net/mocktracks/track-7.mp3',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -72,7 +72,7 @@ module.exports = {
         albumId: 8,
         artistId: 8,
         duration: 333,
-        url: 'http://localhost:3000/track-8.mp3',
+        url: 'https://playsoundst.blob.core.windows.net/mocktracks/track-8.mp3',
         createdAt: new Date(),
         updatedAt: new Date()
       }
