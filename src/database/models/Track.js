@@ -11,26 +11,18 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Track.belongsTo(models.Album,{
-        foreignKey: 'id',
-        target_key: 'albumId'
-      });
-      Track.belongsTo(models.Artist,{
-        foreignKey: 'id',
-        target_key: 'artistId'
-      });
+      Track.belongsTo(models.Album,{foreignKey:{name:'albumId'}});
+      Track.belongsTo(models.Artist,{foreignKey:{name:'artistId'}});
       Track.belongsToMany(models.Playlist, {
         through: 'PlaylistsTracks',
-        foreignKey: 'trackId'
-      })
-
+        foreignKey: {
+          name: 'trackId'
+        }
+      });
     }
   }
   Track.init({
     name: DataTypes.STRING,
-    albumId: DataTypes.INTEGER,
-    cover: DataTypes.STRING,
-    artistId: DataTypes.INTEGER,
     duration: DataTypes.INTEGER,
     url: DataTypes.STRING
   }, {
