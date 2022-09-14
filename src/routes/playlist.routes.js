@@ -94,19 +94,12 @@ router.get('/playliststracks/:id', showPlaylistTracks);
 /**
  * @openapi
  * path: 
- * /playlists/{userId}:
+ * /playlists:
  *  get:
  *    description: Read all playlists from a user
  *    summary: Read all playlists from a user
  *    tags:
  *      - playlist
- *    parameters:
- *      - in: path
- *        name: userId
- *        required: true
- *        schema:
- *          type: int
- *        description: User Id
  *    responses:
  *      200:
  *        description: Return all Playlists from a user
