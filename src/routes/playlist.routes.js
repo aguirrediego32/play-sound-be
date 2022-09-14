@@ -156,7 +156,7 @@ router.get('/playliststracks/:id', showPlaylistTracks);
  *                  type: string
  *                  example: Playlist not found
  */
-router.get('/playlists/:userId', readPlaylist);
+router.get('/playlists/', isAuthenticated ,readPlaylist);
 
 /**
  * @openapi

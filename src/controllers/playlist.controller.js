@@ -51,7 +51,7 @@ const updatePlaylist = async (req, res) => {
 }
 
 const readPlaylist = async (req, res) => {
-    const userId = req.params.userId;
+    const userId = req.user.id;
     const user = await User.findByPk(userId);
     if (!user) {
         return res.status(400).json({msg:'User does not exist'});
