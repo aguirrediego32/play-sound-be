@@ -51,7 +51,7 @@ const updatePlaylist = async (req, res) => {
 }
 
 const readPlaylist = async (req, res) => {
-    const userId = req.user.id;
+    const userId = req.param || req.body.userId //<---- se reemplaza // ----->req.user.id;
     const user = await User.findByPk(userId);
     if (!user) {
         return res.status(400).json({msg:'User does not exist'});
@@ -65,8 +65,15 @@ const readPlaylist = async (req, res) => {
 }
 
 const showPlaylist = async (req, res) => {
+    // TODO: Para ver una playlist, tengo ser el dueño
+    userIdRequest = req.user.id // {id, name, email, role}
+    // http://localhost:3000/playlist/13 <<<----- es el id (playlist)
     const id = req.params.id;
-    let playlist = await Playlist.findByPk(id);
+
+    // Validacion:
+    let playlist = await Playlist.findByPk(id, {where:{userId:userIdRequest}});
+    
+    
     if(playlist) {
         return res.status(200).json({playlist});
     } else {

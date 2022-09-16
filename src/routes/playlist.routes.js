@@ -89,7 +89,7 @@ const {isAuthenticated} = require('../middlewares/UserAuthenticated')
  *                  type: string
  *                  example: Playlist not found
  */
-router.get('/playliststracks/:id', showPlaylistTracks);
+router.get('/playliststracks/:id',isAuthenticated, showPlaylistTracks);
 
 /**
  * @openapi
